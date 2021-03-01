@@ -18,3 +18,6 @@ sources:
         identifier: payment_p2020_05
       - name: payment_p2020_06
         identifier: payment_p2020_06
+      - name: customer
+      - name: address
+      - name: city
