@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: pagila
+    description: "base models"
+    #database: 
+    schema: public
+    tables:
+      - name: payment_p2020_01
+        identifier: payment_p2020_01
+      - name: payment_p2020_02
+        identifier: payment_p2020_02
+      - name: payment_p2020_03
+        identifier: payment_p2020_03
+      - name: payment_p2020_04
+        identifier: payment_p2020_04
+      - name: payment_p2020_05
+        identifier: payment_p2020_05
+      - name: payment_p2020_06
+        identifier: payment_p2020_06
