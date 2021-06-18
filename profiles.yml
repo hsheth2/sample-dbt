@@ -1,0 +1,14 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: secret
+      port: 5432
+      dbname: pagila
+      schema: dbt_postgres
+      threads: 1
+      keepalives_idle: 0 # default 0, indicating the system default
+
