@@ -6,6 +6,7 @@ Requirements:
 
 - Docker
 - dbt
+- Python
 
 ## Getting started
 
@@ -61,6 +62,12 @@ Unless otherwise specified, run all commands from the repo root.
    
    # generate ./target/sources.json
    dbt source snapshot-freshness
+   ```
+
+4. Post-process generated files (so diffs are manageable).
+
+   ```shell
+   python process_generated.py
    ```
 
    
