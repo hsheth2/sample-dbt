@@ -25,6 +25,12 @@ def process_manifest(manifest):
 
 
 def process_sources(sources):
+    def process_result(result):
+        result["snapshotted_at"] = "2021-06-18T17:08:55.925443+00:00"
+        return result
+
+    sources["results"] = [process_result(result) for result in sources["results"]]
+
     return sources
 
 
