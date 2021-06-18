@@ -3,21 +3,34 @@ version: 2
 sources:
   - name: pagila
     description: "base models"
-    #database: 
+    # database:
+    freshness: # default freshness
+      warn_after: { count: 123456789, period: day }
+      error_after: { count: 999999999, period: day }
+    loaded_at_field: last_update
     schema: public
     tables:
+      - name: actor
+      - name: address
+      - name: category
+      - name: city
+      - name: country
+      - name: customer
       - name: payment_p2020_01
         identifier: payment_p2020_01
+        loaded_at_field: payment_date
       - name: payment_p2020_02
         identifier: payment_p2020_02
+        loaded_at_field: payment_date
       - name: payment_p2020_03
         identifier: payment_p2020_03
+        loaded_at_field: payment_date
       - name: payment_p2020_04
         identifier: payment_p2020_04
+        loaded_at_field: payment_date
       - name: payment_p2020_05
         identifier: payment_p2020_05
+        loaded_at_field: payment_date
       - name: payment_p2020_06
         identifier: payment_p2020_06
-      - name: customer
-      - name: address
-      - name: city
+        loaded_at_field: payment_date
