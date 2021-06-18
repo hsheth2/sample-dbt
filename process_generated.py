@@ -7,37 +7,19 @@ def process_catalog(catalog):
 
 
 def process_manifest(manifest):
-    def process_node(node):
+    def process_root_path(item):
 
-        if "root_path" in node:
-            node["root_path"] = "/some-path/sample-dbt"
+        if "root_path" in item:
+            item["root_path"] = "/some-path/sample-dbt"
 
-        return node
+        return item
 
-    def process_doc(doc):
+    root_path_fields = ["nodes", "docs", "macros", "sources"]
 
-        if "root_path" in doc:
+    for root_path_field in root_path_fields:
 
-            doc["root_path"] = "/some-path/sample-dbt"
-
-        return doc
-
-    def process_macro(macro):
-
-        if "root_path" in macro:
-
-            macro["root_path"] = "/some-path/sample-dbt"
-
-        return macro
-
-    for node_key, node in manifest["nodes"].items():
-        manifest["nodes"][node_key] = process_node(node)
-
-    for doc_key, doc in manifest["docs"].items():
-        manifest["docs"][doc_key] = process_doc(doc)
-
-    for macro_key, macro in manifest["macros"].items():
-        manifest["macros"][macro_key] = process_macro(macro)
+        for item_key, item in manifest[root_path_field].items():
+            manifest[root_path_field][item_key] = process_root_path(item)
 
     return manifest
 
