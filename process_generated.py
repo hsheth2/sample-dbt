@@ -21,13 +21,22 @@ def process_manifest(manifest):
         for item_key, item in manifest[root_path_field].items():
             manifest[root_path_field][item_key] = process_root_path(item)
 
+    manifest["metadata"]["generated_at"] = "2021-06-18T21:38:36.384613Z"
+    manifest["metadata"]["invocation_id"] = "just-some-random-id"
+
     return manifest
 
 
 def process_sources(sources):
     def process_result(result):
+        result["max_loaded_at_time_ago_in_s"] = 42276862.910052
         result["snapshotted_at"] = "2021-06-18T17:08:55.925443+00:00"
         return result
+
+    sources["elapsed_time"] = 3.1415
+
+    sources["metadata"]["generated_at"] = "2021-06-18T21:38:36.384613Z"
+    sources["metadata"]["invocation_id"] = "just-some-random-id"
 
     sources["results"] = [process_result(result) for result in sources["results"]]
 

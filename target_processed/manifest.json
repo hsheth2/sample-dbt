@@ -2968,8 +2968,8 @@
     "dbt_schema_version": "https://schemas.getdbt.com/dbt/manifest/v1.json",
     "dbt_version": "0.19.1",
     "env": {},
-    "generated_at": "2021-06-18T17:08:55.454033Z",
-    "invocation_id": "29560046-43f7-4a3b-875f-273d13fffb8b",
+    "generated_at": "2021-06-18T21:38:36.384613Z",
+    "invocation_id": "just-some-random-id",
     "project_id": "d7ed27e3f02ff95ca753dd76aed208ee",
     "send_anonymous_usage_stats": true,
     "user_id": "42f923a6-43bf-43ad-a6e2-6f51517dcc94"
