@@ -16,7 +16,7 @@ Unless otherwise specified, run all commands from the repo root.
 
    ```shell
    docker pull postgres
-   
+
    # start (add -d before the last 'postgres' to run in background)
    docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=secret postgres
    ```
@@ -57,11 +57,11 @@ Unless otherwise specified, run all commands from the repo root.
 3. Set up dbt (order matters!):
 
    ```shell
-   # generate ./target/sources.json
-   dbt source snapshot-freshness
-   
    # generate ./target/catalog.json and ./target/manifest.json
    dbt run --profiles-dir .
+
+   # generate ./target/sources.json
+   dbt source snapshot-freshness
    ```
 
 4. Post-process generated files (so diffs are manageable).
@@ -69,6 +69,3 @@ Unless otherwise specified, run all commands from the repo root.
    ```shell
    python process_generated.py
    ```
-
-   
-
