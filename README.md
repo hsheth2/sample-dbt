@@ -57,11 +57,14 @@ Unless otherwise specified, run all commands from the repo root.
 3. Set up dbt (order matters!):
 
    ```shell
-   # generate ./target/catalog.json and ./target/manifest.json
-   dbt docs generate
+   # execute transforms
+   dbt run --profiles-dir .
 
    # generate ./target/sources.json
    dbt source snapshot-freshness
+
+   # generate ./target/catalog.json and ./target/manifest.json
+   dbt docs generate
    ```
 
 4. Post-process generated files (so diffs are manageable).

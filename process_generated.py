@@ -58,11 +58,11 @@ if __name__ == "__main__":
     processed_manifest = process_manifest(manifest)
     processed_sources = process_sources(sources)
 
-    with open("./target_processed/catalog.json", "w") as file:
+    with open("./target_processed/dbt_catalog.json", "w") as file:
         json.dump(processed_catalog, file, indent=2, sort_keys=True)
 
-    with open("./target_processed/manifest.json", "w") as file:
+    with open("./target_processed/dbt_manifest.json", "w") as file:
         json.dump(processed_manifest, file, indent=2, sort_keys=True)
 
-    with open("./target_processed/sources.json", "w") as file:
+    with open("./target_processed/dbt_sources.json", "w") as file:
         json.dump(processed_sources, file, indent=2, sort_keys=True)
