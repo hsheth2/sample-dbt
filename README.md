@@ -58,7 +58,7 @@ Unless otherwise specified, run all commands from the repo root.
 
    ```shell
    # generate ./target/catalog.json and ./target/manifest.json
-   dbt run --profiles-dir .
+   dbt docs generate
 
    # generate ./target/sources.json
    dbt source snapshot-freshness
