@@ -11,10 +11,18 @@ sources:
     schema: public
     tables:
       - name: actor
+        meta:
+          owner: "@alice"
+          model_maturity: in dev
+          some_other_property: test 1
       - name: address
       - name: category
       - name: city
       - name: country
+        meta:
+          owner: "@bob"
+          model_maturity: in prod
+          some_other_property: test 2
       - name: customer
       - name: payment_p2020_01
         identifier: payment_p2020_01
@@ -22,6 +30,10 @@ sources:
       - name: payment_p2020_02
         identifier: payment_p2020_02
         loaded_at_field: payment_date
+        meta:
+          owner: "@charles"
+          model_maturity: in prod
+          some_other_property: test 3
       - name: payment_p2020_03
         identifier: payment_p2020_03
         loaded_at_field: payment_date
