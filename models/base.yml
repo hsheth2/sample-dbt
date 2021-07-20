@@ -34,6 +34,7 @@ sources:
           owner: "@charles"
           model_maturity: in prod
           some_other_property: test 3
+          an_array_property: ["alpha", "beta", "charlie"]
       - name: payment_p2020_03
         identifier: payment_p2020_03
         loaded_at_field: payment_date
