@@ -1,5 +1,6 @@
 {{ config(
     materialized = "table",
+    alias='an-aliased-view-for-monthly-billing'
 ) }}
 
 SELECT 
