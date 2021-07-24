@@ -16,7 +16,9 @@ sources:
           model_maturity: in dev
           some_other_property: test 1
       - name: address
+        description: "a user's address"
       - name: category
+        description: "a user's category"
       - name: city
       - name: country
         meta:
@@ -44,6 +46,7 @@ sources:
       - name: payment_p2020_05
         identifier: payment_p2020_05
         loaded_at_field: payment_date
+        description: "a payment"
       - name: payment_p2020_06
         identifier: payment_p2020_06
         loaded_at_field: payment_date

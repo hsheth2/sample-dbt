@@ -46540,6 +46540,12 @@ SELECT pg_catalog.setval('public.staff_staff_id_seq', 2, true);
 SELECT pg_catalog.setval('public.store_store_id_seq', 2, true);
 
 
+
+-- add some comments to test out dbt's comment ingestion
+COMMENT ON TABLE public.customer IS 'Customers table (postgres comment)';
+
+
+
 --
 -- PostgreSQL database dump complete
 --
