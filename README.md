@@ -32,7 +32,6 @@ Unless otherwise specified, run all commands from the repo root.
 
    ```sql
    CREATE DATABASE pagila;
-   CREATE DATABASE
    \q # quit
    ```
 

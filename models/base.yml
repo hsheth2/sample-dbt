@@ -15,6 +15,13 @@ sources:
           owner: "@alice"
           model_maturity: in dev
           some_other_property: test 1
+        columns:
+          - name: first_name
+            description: "description for first_name (dbt side)"
+          - name: last_name
+            description: "description for last_name (dbt side)"
+          - name: last_update
+            description: "description for last_update (dbt side)"
       - name: address
         description: "a user's address"
       - name: category
