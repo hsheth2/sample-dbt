@@ -11,17 +11,18 @@ sources:
     schema: public
     tables:
       - name: actor
+        description: "description for actor table from dbt"
         meta:
           owner: "@alice"
           model_maturity: in dev
           some_other_property: test 1
         columns:
           - name: first_name
-            description: "description for first_name (dbt side)"
+            description: "description for first_name from dbt"
           - name: last_name
-            description: "description for last_name (dbt side)"
+            description: "description for last_name from dbt"
           - name: last_update
-            description: "description for last_update (dbt side)"
+            description: "description for last_update from dbt"
       - name: address
         description: "a user's address"
       - name: category
@@ -33,6 +34,7 @@ sources:
           model_maturity: in prod
           some_other_property: test 2
       - name: customer
+        description:  "description for customer table from dbt"
       - name: payment_p2020_01
         identifier: payment_p2020_01
         loaded_at_field: payment_date

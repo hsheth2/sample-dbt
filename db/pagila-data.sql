@@ -46542,8 +46542,8 @@ SELECT pg_catalog.setval('public.store_store_id_seq', 2, true);
 
 
 -- add some comments to test out dbt's comment ingestion
-COMMENT ON TABLE public.customer IS 'Customers table (postgres comment)';
-
+COMMENT ON TABLE public.actor IS 'Actors table – from postgres';
+COMMENT ON COLUMN public.actor."first_name" IS 'Actors column – from postgres';
 
 
 --
