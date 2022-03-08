@@ -56,6 +56,10 @@ Unless otherwise specified, run all commands from the repo root.
 3. Set up dbt (order matters!):
 
    ```shell
+   # create ~/.dbt directory to copy profiles.yml 
+   mkdir ~/.dbt
+   # copy profiles.yml to ~/.dbt/
+   cp profiles.yml ~/.dbt/
    # execute transforms
    dbt run --profiles-dir .
 
