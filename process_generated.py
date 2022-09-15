@@ -3,6 +3,9 @@ import json
 
 def process_catalog(catalog):
 
+    catalog["metadata"]["generated_at"] = "2021-06-19T21:38:36.384613Z"
+    catalog["metadata"]["invocation_id"] = "just-some-random-id-2"
+
     return catalog
 
 

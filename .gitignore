@@ -6,4 +6,5 @@ dbt-env
 target/
 dbt_modules/
 logs/
-
+venv/
+.envrc
