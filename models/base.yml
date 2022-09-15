@@ -19,10 +19,20 @@ sources:
         columns:
           - name: first_name
             description: "description for first_name from dbt"
+            meta:
+              terms: pii, first_name
+            tags:
+              - sensitive
           - name: last_name
             description: "description for last_name from dbt"
+            meta:
+              terms: pii, last_name
+            tags:
+              - sensitive
           - name: last_update
             description: "description for last_update from dbt"
+            tags:
+              - timestamp
       - name: address
         description: "a user's address"
       - name: category

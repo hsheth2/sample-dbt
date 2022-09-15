@@ -10,10 +10,13 @@ def process_catalog(catalog):
 
 
 def process_manifest(manifest):
-    def process_root_path(item):
+    def process_node(item):
 
         if "root_path" in item:
             item["root_path"] = "/some-path/sample-dbt"
+        
+        if 'created_at' in item:
+            item['created_at'] = 1663278957.5715818
 
         return item
 
@@ -22,7 +25,7 @@ def process_manifest(manifest):
     for root_path_field in root_path_fields:
 
         for item_key, item in manifest[root_path_field].items():
-            manifest[root_path_field][item_key] = process_root_path(item)
+            manifest[root_path_field][item_key] = process_node(item)
 
     manifest["metadata"]["generated_at"] = "2021-06-18T21:38:36.384613Z"
     manifest["metadata"]["invocation_id"] = "just-some-random-id"

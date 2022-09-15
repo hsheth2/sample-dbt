@@ -60,6 +60,11 @@ Unless otherwise specified, run all commands from the repo root.
    mkdir ~/.dbt
    # copy profiles.yml to ~/.dbt/
    cp profiles.yml ~/.dbt/
+   ```
+
+4. Generate files for dbt:
+
+   ```shell
    # execute transforms
    dbt run --profiles-dir .
 
@@ -68,10 +73,6 @@ Unless otherwise specified, run all commands from the repo root.
 
    # generate ./target/catalog.json and ./target/manifest.json
    dbt docs generate
-   ```
 
-4. Post-process generated files (so diffs are manageable).
-
-   ```shell
    python process_generated.py
    ```
