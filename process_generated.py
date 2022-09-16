@@ -37,6 +37,11 @@ def process_sources(sources):
     def process_result(result):
         result["max_loaded_at_time_ago_in_s"] = 42276862.910052
         result["snapshotted_at"] = "2021-06-18T17:08:55.925443+00:00"
+
+        result['execution_time'] = 0.023441791534423828
+        for timing in result['timing']:
+            timing['completed_at'] = "2022-09-16T19:06:38.239639Z"
+            timing['started_at'] = "2022-09-16T19:06:38.239635Z"
         return result
 
     sources["elapsed_time"] = 3.1415

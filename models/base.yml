@@ -19,20 +19,10 @@ sources:
         columns:
           - name: first_name
             description: "description for first_name from dbt"
-            meta:
-              terms: pii, first_name
-            tags:
-              - sensitive
           - name: last_name
             description: "description for last_name from dbt"
-            meta:
-              terms: pii, last_name
-            tags:
-              - sensitive
           - name: last_update
             description: "description for last_update from dbt"
-            tags:
-              - timestamp
       - name: address
         description: "a user's address"
       - name: category
@@ -69,3 +59,16 @@ sources:
       - name: payment_p2020_06
         identifier: payment_p2020_06
         loaded_at_field: payment_date
+
+models:
+  - name: payments_by_customer_by_month
+    columns:
+      - name: billing_month
+      - name: customer_id
+        description: "description for customer_id from dbt"
+        meta:
+          terms: pii, customer_id
+          is_sensitive: true
+        tags:
+          - tag_from_dbt
+      - name: amount
