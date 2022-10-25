@@ -96,7 +96,7 @@
       "metadata": {
         "comment": null,
         "database": "pagila",
-        "name": "an-aliased-view-for-payments",
+        "name": "an_aliased_view_for_payments",
         "owner": "postgres",
         "schema": "dbt_postgres",
         "type": "VIEW"

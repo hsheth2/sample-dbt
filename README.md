@@ -18,7 +18,7 @@ Unless otherwise specified, run all commands from the repo root.
    docker pull postgres
 
    # start (add -d before the last 'postgres' to run in background)
-   docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=secret postgres
+   docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=secret -d postgres
    ```
 
 2. Ingest sample data into the database
@@ -65,14 +65,14 @@ Unless otherwise specified, run all commands from the repo root.
 4. Generate files for dbt:
 
    ```shell
-   # execute transforms
-   dbt run --profiles-dir .
-
    # generate ./target/sources.json
    dbt source snapshot-freshness
 
-   # generate ./target/catalog.json and ./target/manifest.json
+   # generate ./target/catalog.json
    dbt docs generate
+
+   # build
+   dbt build --profiles-dir .
 
    python process_generated.py
    ```

@@ -1,6 +1,6 @@
 {{ config(
     materialized="view",
-    alias='an-aliased-view-for-payments'
+    alias='an_aliased_view_for_payments'
 ) }}
 
 with payments as (
