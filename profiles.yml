@@ -8,7 +8,7 @@ default:
       password: secret
       port: 5432
       dbname: pagila
-      schema: dbt_postgres
+      schema: public
       threads: 1
       keepalives_idle: 0 # default 0, indicating the system default
 

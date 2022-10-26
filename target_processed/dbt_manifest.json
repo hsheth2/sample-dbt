@@ -6115,7 +6115,7 @@
     "invocation_id": "just-some-random-id",
     "project_id": "d7ed27e3f02ff95ca753dd76aed208ee",
     "send_anonymous_usage_stats": true,
-    "user_id": "0291cdf8-5dae-42a8-be0a-23dc3ecca550"
+    "user_id": "e2ada6ad-3b40-4a61-8f16-dc722bad324d"
   },
   "metrics": {},
   "nodes": {
@@ -6127,7 +6127,9 @@
         "name": "sha256"
       },
       "columns": {},
-      "compiled_path": null,
+      "compiled": true,
+      "compiled_path": "target/compiled/sample_dbt/models/transform/customer_details.sql",
+      "compiled_sql": "\n\nSELECT\n    c.customer_id,\n    c.first_name || ' ' || c.last_name as \"full_name\",\n    c.email,\n    a.address,\n    m.city,\n    a.postal_code,\n    a.phone\nFROM\n    \"pagila\".\"public\".\"customer\" c\n    left outer join \"pagila\".\"public\".\"address\" a on c.address_id = a.address_id\n    left outer join \"pagila\".\"public\".\"city\" m on a.city_id = m.city_id",
       "config": {
         "alias": null,
         "column_types": {},
@@ -6152,15 +6154,17 @@
       "depends_on": {
         "macros": [],
         "nodes": [
-          "source.sample_dbt.pagila.customer",
           "source.sample_dbt.pagila.address",
-          "source.sample_dbt.pagila.city"
+          "source.sample_dbt.pagila.city",
+          "source.sample_dbt.pagila.customer"
         ]
       },
       "description": "",
       "docs": {
         "show": true
       },
+      "extra_ctes": [],
+      "extra_ctes_injected": true,
       "fqn": [
         "sample_dbt",
         "transform",
@@ -6175,14 +6179,11 @@
       "path": "transform/customer_details.sql",
       "raw_sql": "{{ config(\n    materialized = \"ephemeral\",\n) }}\n\nSELECT\n    c.customer_id,\n    c.first_name || ' ' || c.last_name as \"full_name\",\n    c.email,\n    a.address,\n    m.city,\n    a.postal_code,\n    a.phone\nFROM\n    {{ source('pagila', 'customer')}} c\n    left outer join {{ source('pagila', 'address')}} a on c.address_id = a.address_id\n    left outer join {{ source('pagila', 'city') }} m on a.city_id = m.city_id",
       "refs": [],
+      "relation_name": null,
       "resource_type": "model",
       "root_path": "/some-path/sample-dbt",
-      "schema": "dbt_postgres",
+      "schema": "public",
       "sources": [
-        [
-          "pagila",
-          "customer"
-        ],
         [
           "pagila",
           "address"
@@ -6190,6 +6191,10 @@
         [
           "pagila",
           "city"
+        ],
+        [
+          "pagila",
+          "customer"
         ]
       ],
       "tags": [],
@@ -6200,13 +6205,15 @@
     },
     "model.sample_dbt.monthly_billing_with_cust": {
       "alias": "an-aliased-view-for-monthly-billing",
-      "build_path": null,
+      "build_path": "target/run/sample_dbt/models/billing/monthly_billing_with_cust.sql",
       "checksum": {
         "checksum": "3f13dfa22648e3bb3e52082de053591b33b07ca028216db3b12a1a09d6bf747a",
         "name": "sha256"
       },
       "columns": {},
-      "compiled_path": null,
+      "compiled": true,
+      "compiled_path": "target/compiled/sample_dbt/models/billing/monthly_billing_with_cust.sql",
+      "compiled_sql": "\n\nwith __dbt__cte__customer_details as (\n\n\nSELECT\n    c.customer_id,\n    c.first_name || ' ' || c.last_name as \"full_name\",\n    c.email,\n    a.address,\n    m.city,\n    a.postal_code,\n    a.phone\nFROM\n    \"pagila\".\"public\".\"customer\" c\n    left outer join \"pagila\".\"public\".\"address\" a on c.address_id = a.address_id\n    left outer join \"pagila\".\"public\".\"city\" m on a.city_id = m.city_id\n)SELECT \n    pbc.billing_month,\n    pbc.customer_id,\n    pbc.amount,\n    cust.email\nFROM\n    \"pagila\".\"public\".\"payments_by_customer_by_month\" pbc\n    left outer join __dbt__cte__customer_details cust on pbc.customer_id = cust.customer_id\nORDER BY\n    pbc.billing_month",
       "config": {
         "alias": "an-aliased-view-for-monthly-billing",
         "column_types": {},
@@ -6229,7 +6236,18 @@
       "database": "pagila",
       "deferred": false,
       "depends_on": {
-        "macros": [],
+        "macros": [
+          "macro.dbt.load_cached_relation",
+          "macro.dbt.make_intermediate_relation",
+          "macro.dbt.make_backup_relation",
+          "macro.dbt.drop_relation_if_exists",
+          "macro.dbt.run_hooks",
+          "macro.dbt.statement",
+          "macro.dbt.create_indexes",
+          "macro.dbt.should_revoke",
+          "macro.dbt.apply_grants",
+          "macro.dbt.persist_docs"
+        ],
         "nodes": [
           "model.sample_dbt.payments_by_customer_by_month",
           "model.sample_dbt.customer_details"
@@ -6239,6 +6257,13 @@
       "docs": {
         "show": true
       },
+      "extra_ctes": [
+        {
+          "id": "model.sample_dbt.customer_details",
+          "sql": " __dbt__cte__customer_details as (\n\n\nSELECT\n    c.customer_id,\n    c.first_name || ' ' || c.last_name as \"full_name\",\n    c.email,\n    a.address,\n    m.city,\n    a.postal_code,\n    a.phone\nFROM\n    \"pagila\".\"public\".\"customer\" c\n    left outer join \"pagila\".\"public\".\"address\" a on c.address_id = a.address_id\n    left outer join \"pagila\".\"public\".\"city\" m on a.city_id = m.city_id\n)"
+        }
+      ],
+      "extra_ctes_injected": true,
       "fqn": [
         "sample_dbt",
         "billing",
@@ -6260,9 +6285,10 @@
           "customer_details"
         ]
       ],
+      "relation_name": "\"pagila\".\"public\".\"an-aliased-view-for-monthly-billing\"",
       "resource_type": "model",
       "root_path": "/some-path/sample-dbt",
-      "schema": "dbt_postgres",
+      "schema": "public",
       "sources": [],
       "tags": [],
       "unique_id": "model.sample_dbt.monthly_billing_with_cust",
@@ -6273,13 +6299,15 @@
     },
     "model.sample_dbt.payments_base": {
       "alias": "an_aliased_view_for_payments",
-      "build_path": null,
+      "build_path": "target/run/sample_dbt/models/base/payments_base.sql",
       "checksum": {
         "checksum": "33a656d04defa3ea5153708e66658621465f444b388b775cfa7c3bbdc8cf7898",
         "name": "sha256"
       },
       "columns": {},
-      "compiled_path": null,
+      "compiled": true,
+      "compiled_path": "target/compiled/sample_dbt/models/base/payments_base.sql",
+      "compiled_sql": "\n\nwith payments as (\n\n    select \n        *\n    from \n        \"pagila\".\"public\".\"payment_p2020_01\"\n    UNION ALL\n    select \n        *\n    from \n        \"pagila\".\"public\".\"payment_p2020_02\"\n    UNION ALL\n    select \n        *\n    from \n        \"pagila\".\"public\".\"payment_p2020_02\"\n    UNION ALL\n    select \n        *\n    from \n        \"pagila\".\"public\".\"payment_p2020_03\"\n    UNION ALL\n    select \n        *\n    from \n        \"pagila\".\"public\".\"payment_p2020_04\"\n    UNION ALL\n    select \n        *\n    from \n        \"pagila\".\"public\".\"payment_p2020_05\"\n    UNION ALL\n    select \n        *\n    from \n        \"pagila\".\"public\".\"payment_p2020_06\"\n)\n\nselect *\nfrom payments",
       "config": {
         "alias": "an_aliased_view_for_payments",
         "column_types": {},
@@ -6302,20 +6330,32 @@
       "database": "pagila",
       "deferred": false,
       "depends_on": {
-        "macros": [],
+        "macros": [
+          "macro.dbt.load_cached_relation",
+          "macro.dbt.make_intermediate_relation",
+          "macro.dbt.make_backup_relation",
+          "macro.dbt.run_hooks",
+          "macro.dbt.drop_relation_if_exists",
+          "macro.dbt.statement",
+          "macro.dbt.should_revoke",
+          "macro.dbt.apply_grants",
+          "macro.dbt.persist_docs"
+        ],
         "nodes": [
-          "source.sample_dbt.pagila.payment_p2020_04",
-          "source.sample_dbt.pagila.payment_p2020_02",
-          "source.sample_dbt.pagila.payment_p2020_06",
-          "source.sample_dbt.pagila.payment_p2020_05",
           "source.sample_dbt.pagila.payment_p2020_01",
-          "source.sample_dbt.pagila.payment_p2020_03"
+          "source.sample_dbt.pagila.payment_p2020_06",
+          "source.sample_dbt.pagila.payment_p2020_02",
+          "source.sample_dbt.pagila.payment_p2020_03",
+          "source.sample_dbt.pagila.payment_p2020_05",
+          "source.sample_dbt.pagila.payment_p2020_04"
         ]
       },
       "description": "",
       "docs": {
         "show": true
       },
+      "extra_ctes": [],
+      "extra_ctes_injected": true,
       "fqn": [
         "sample_dbt",
         "base",
@@ -6330,17 +6370,14 @@
       "path": "base/payments_base.sql",
       "raw_sql": "{{ config(\n    materialized=\"view\",\n    alias='an_aliased_view_for_payments'\n) }}\n\nwith payments as (\n\n    select \n        *\n    from \n        {{ source('pagila', 'payment_p2020_01')}}\n    UNION ALL\n    select \n        *\n    from \n        {{ source('pagila', 'payment_p2020_02')}}\n    UNION ALL\n    select \n        *\n    from \n        {{ source('pagila', 'payment_p2020_02')}}\n    UNION ALL\n    select \n        *\n    from \n        {{ source('pagila', 'payment_p2020_03')}}\n    UNION ALL\n    select \n        *\n    from \n        {{ source('pagila', 'payment_p2020_04')}}\n    UNION ALL\n    select \n        *\n    from \n        {{ source('pagila', 'payment_p2020_05')}}\n    UNION ALL\n    select \n        *\n    from \n        {{ source('pagila', 'payment_p2020_06')}}\n)\n\nselect *\nfrom payments",
       "refs": [],
+      "relation_name": "\"pagila\".\"public\".\"an_aliased_view_for_payments\"",
       "resource_type": "model",
       "root_path": "/some-path/sample-dbt",
-      "schema": "dbt_postgres",
+      "schema": "public",
       "sources": [
         [
           "pagila",
-          "payment_p2020_04"
-        ],
-        [
-          "pagila",
-          "payment_p2020_02"
+          "payment_p2020_01"
         ],
         [
           "pagila",
@@ -6348,15 +6385,19 @@
         ],
         [
           "pagila",
-          "payment_p2020_05"
-        ],
-        [
-          "pagila",
-          "payment_p2020_01"
+          "payment_p2020_02"
         ],
         [
           "pagila",
           "payment_p2020_03"
+        ],
+        [
+          "pagila",
+          "payment_p2020_05"
+        ],
+        [
+          "pagila",
+          "payment_p2020_04"
         ]
       ],
       "tags": [],
@@ -6368,7 +6409,7 @@
     },
     "model.sample_dbt.payments_by_customer_by_month": {
       "alias": "payments_by_customer_by_month",
-      "build_path": null,
+      "build_path": "target/run/sample_dbt/models/transform/payments_by_customer_by_month.sql",
       "checksum": {
         "checksum": "691757217fdc0ad849160f0b24bff8fa09385b51f9f5605dda388a6d47d1ab28",
         "name": "sha256"
@@ -6404,7 +6445,9 @@
           ]
         }
       },
-      "compiled_path": null,
+      "compiled": true,
+      "compiled_path": "target/compiled/sample_dbt/models/transform/payments_by_customer_by_month.sql",
+      "compiled_sql": "\n\nSELECT\n    date_trunc('month', payment_date) as \"billing_month\",\n    customer_id,\n    sum(amount) as \"amount\"\nFROM\n    \"pagila\".\"public\".\"an_aliased_view_for_payments\"\nGROUP BY\n    billing_month,\n    customer_id",
       "config": {
         "alias": null,
         "column_types": {},
@@ -6427,7 +6470,18 @@
       "database": "pagila",
       "deferred": false,
       "depends_on": {
-        "macros": [],
+        "macros": [
+          "macro.dbt.load_cached_relation",
+          "macro.dbt.make_intermediate_relation",
+          "macro.dbt.make_backup_relation",
+          "macro.dbt.drop_relation_if_exists",
+          "macro.dbt.run_hooks",
+          "macro.dbt.statement",
+          "macro.dbt.create_indexes",
+          "macro.dbt.should_revoke",
+          "macro.dbt.apply_grants",
+          "macro.dbt.persist_docs"
+        ],
         "nodes": [
           "model.sample_dbt.payments_base"
         ]
@@ -6436,6 +6490,8 @@
       "docs": {
         "show": true
       },
+      "extra_ctes": [],
+      "extra_ctes_injected": true,
       "fqn": [
         "sample_dbt",
         "transform",
@@ -6454,9 +6510,10 @@
           "payments_base"
         ]
       ],
+      "relation_name": "\"pagila\".\"public\".\"payments_by_customer_by_month\"",
       "resource_type": "model",
       "root_path": "/some-path/sample-dbt",
-      "schema": "dbt_postgres",
+      "schema": "public",
       "sources": [],
       "tags": [],
       "unique_id": "model.sample_dbt.payments_by_customer_by_month",

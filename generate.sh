@@ -2,14 +2,16 @@
 
 set -euo pipefail
 
-# execute transforms
-dbt run --profiles-dir .
+rm -rf target
 
 # generate ./target/sources.json
 dbt source snapshot-freshness
 
-# generate ./target/catalog.json and ./target/manifest.json
+# generate ./target/catalog.json
 dbt docs generate
 
-# Run post-processing (minimizes git diffs)
+# build
+dbt build --profiles-dir .
+
+# minimize git diff
 python process_generated.py

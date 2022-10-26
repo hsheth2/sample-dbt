@@ -65,14 +65,5 @@ Unless otherwise specified, run all commands from the repo root.
 4. Generate files for dbt:
 
    ```shell
-   # generate ./target/sources.json
-   dbt source snapshot-freshness
-
-   # generate ./target/catalog.json
-   dbt docs generate
-
-   # build
-   dbt build --profiles-dir .
-
-   python process_generated.py
+   ./generate.sh
    ```
