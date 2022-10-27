@@ -53,9 +53,23 @@ def process_sources(sources):
 
     return sources
 
+def process_run_results(run_results):
+    run_results["elapsed_time"] = 3.1415
 
-if __name__ == "__main__":
+    run_results["metadata"]["generated_at"] = "2021-06-18T21:38:36.384613Z"
+    run_results["metadata"]["invocation_id"] = "just-some-random-id"
 
+    def process_run(result):
+        result['execution_time'] = 0.023441791534423828
+        for timing in result['timing']:
+            timing['completed_at'] = "2022-09-16T19:06:38.239639Z"
+            timing['started_at'] = "2022-09-16T19:06:38.239635Z"
+        return result
+
+    run_results["results"] = [process_run(result) for result in run_results["results"]]
+    return run_results
+
+def main():
     with open("./target/catalog.json", "r") as file:
         catalog = json.load(file)
 
@@ -65,9 +79,13 @@ if __name__ == "__main__":
     with open("./target/sources.json", "r") as file:
         sources = json.load(file)
 
+    with open("./target/run_results.json", "r") as file:
+        run_results = json.load(file)
+
     processed_catalog = process_catalog(catalog)
     processed_manifest = process_manifest(manifest)
     processed_sources = process_sources(sources)
+    processed_run_results = process_run_results(run_results)
 
     with open("./target_processed/dbt_catalog.json", "w") as file:
         json.dump(processed_catalog, file, indent=2, sort_keys=True)
@@ -77,3 +95,9 @@ if __name__ == "__main__":
 
     with open("./target_processed/dbt_sources.json", "w") as file:
         json.dump(processed_sources, file, indent=2, sort_keys=True)
+    
+    with open("./target_processed/dbt_run_results.json", "w") as file:
+        json.dump(processed_run_results, file, indent=2, sort_keys=True)
+
+if __name__ == "__main__":
+    main()

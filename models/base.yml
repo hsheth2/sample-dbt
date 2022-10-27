@@ -17,6 +17,11 @@ sources:
           model_maturity: in dev
           some_other_property: test 1
         columns:
+          - name: actor_id
+            description: "description for actor_id column from dbt"
+            tests:
+              - not_null
+              - unique
           - name: first_name
             description: "description for first_name from dbt"
           - name: last_name
@@ -72,3 +77,19 @@ models:
         tags:
           - tag_from_dbt
       - name: amount
+  
+  - name: monthly_billing_with_cust
+    columns:
+      - name: billing_month
+        tests:
+          - not_null
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('customer_details')
+              field: customer_id
+      - name: email
+        tests:
+          - not_null
+          - is_email
+
