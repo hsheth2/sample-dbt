@@ -51,6 +51,31 @@
       "unique_id": "model.sample_dbt.payments_base"
     },
     {
+      "adapter_response": {
+        "_message": "INSERT 0 0",
+        "code": "INSERT",
+        "rows_affected": 0
+      },
+      "execution_time": 0.023441791534423828,
+      "failures": null,
+      "message": "INSERT 0 0",
+      "status": "success",
+      "thread_id": "Thread-1",
+      "timing": [
+        {
+          "completed_at": "2022-09-16T19:06:38.239639Z",
+          "name": "compile",
+          "started_at": "2022-09-16T19:06:38.239635Z"
+        },
+        {
+          "completed_at": "2022-09-16T19:06:38.239639Z",
+          "name": "execute",
+          "started_at": "2022-09-16T19:06:38.239635Z"
+        }
+      ],
+      "unique_id": "snapshot.sample_dbt.customer_snapshot"
+    },
+    {
       "adapter_response": {},
       "execution_time": 0.023441791534423828,
       "failures": 0,

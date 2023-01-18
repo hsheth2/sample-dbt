@@ -24,31 +24,17 @@ Unless otherwise specified, run all commands from the repo root.
 2. Ingest sample data into the database
 
    ```shell
-   # enter psql shell
-   docker exec -it postgres psql -U postgres
-   ```
-
-   Once in shell, run
-
-   ```sql
-   CREATE DATABASE pagila;
-   \q # quit
-   ```
-
-   Now, run the ingestion SQL scripts:
-
-   ```shell
+   # create database
+   echo 'CREATE DATABASE pagila' | docker exec -it postgres psql -U postgres
    # schema objects
    cat ./db/pagila-schema.sql | docker exec -i postgres psql -U postgres -d pagila
    # data
    cat ./db/pagila-data.sql | docker exec -i postgres psql -U postgres -d pagila
    ```
 
-   To confirm ingestion, enter psql shell again (same command as before) and run
+   To confirm ingestion, enter psql shell again (using `docker exec -it postgres psql -U postgres -d pagila`) and run
 
    ```sql
-   # connect to database
-   \c pagila
    # list tables
    \dt
    ```

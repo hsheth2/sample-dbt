@@ -16,6 +16,7 @@
     "model.sample_dbt.payments_by_customer_by_month": [
       "model.sample_dbt.monthly_billing_with_cust"
     ],
+    "snapshot.sample_dbt.customer_snapshot": [],
     "source.sample_dbt.pagila.actor": [
       "test.sample_dbt.assert_source_actor_last_update_is_recent",
       "test.sample_dbt.source_not_null_pagila_actor_actor_id.ad63829d3e",
@@ -30,7 +31,8 @@
     ],
     "source.sample_dbt.pagila.country": [],
     "source.sample_dbt.pagila.customer": [
-      "model.sample_dbt.customer_details"
+      "model.sample_dbt.customer_details",
+      "snapshot.sample_dbt.customer_snapshot"
     ],
     "source.sample_dbt.pagila.payment_p2020_01": [
       "model.sample_dbt.payments_base"
@@ -7569,9 +7571,9 @@
       "depends_on": {
         "macros": [],
         "nodes": [
+          "source.sample_dbt.pagila.address",
           "source.sample_dbt.pagila.city",
-          "source.sample_dbt.pagila.customer",
-          "source.sample_dbt.pagila.address"
+          "source.sample_dbt.pagila.customer"
         ]
       },
       "description": "",
@@ -7603,15 +7605,15 @@
       "sources": [
         [
           "pagila",
+          "address"
+        ],
+        [
+          "pagila",
           "city"
         ],
         [
           "pagila",
           "customer"
-        ],
-        [
-          "pagila",
-          "address"
         ]
       ],
       "tags": [],
@@ -7777,12 +7779,12 @@
       "depends_on": {
         "macros": [],
         "nodes": [
-          "source.sample_dbt.pagila.payment_p2020_01",
-          "source.sample_dbt.pagila.payment_p2020_04",
-          "source.sample_dbt.pagila.payment_p2020_06",
           "source.sample_dbt.pagila.payment_p2020_02",
           "source.sample_dbt.pagila.payment_p2020_05",
-          "source.sample_dbt.pagila.payment_p2020_03"
+          "source.sample_dbt.pagila.payment_p2020_01",
+          "source.sample_dbt.pagila.payment_p2020_04",
+          "source.sample_dbt.pagila.payment_p2020_03",
+          "source.sample_dbt.pagila.payment_p2020_06"
         ]
       },
       "description": "",
@@ -7814,18 +7816,6 @@
       "sources": [
         [
           "pagila",
-          "payment_p2020_01"
-        ],
-        [
-          "pagila",
-          "payment_p2020_04"
-        ],
-        [
-          "pagila",
-          "payment_p2020_06"
-        ],
-        [
-          "pagila",
           "payment_p2020_02"
         ],
         [
@@ -7834,7 +7824,19 @@
         ],
         [
           "pagila",
+          "payment_p2020_01"
+        ],
+        [
+          "pagila",
+          "payment_p2020_04"
+        ],
+        [
+          "pagila",
           "payment_p2020_03"
+        ],
+        [
+          "pagila",
+          "payment_p2020_06"
         ]
       ],
       "tags": [],
@@ -7953,6 +7955,96 @@
       "unique_id": "model.sample_dbt.payments_by_customer_by_month",
       "unrendered_config": {
         "materialized": "table"
+      }
+    },
+    "snapshot.sample_dbt.customer_snapshot": {
+      "alias": "customer_snapshot",
+      "build_path": "target/run/sample_dbt/snapshots/customer_snapshot.sql",
+      "checksum": {
+        "checksum": "a410c31c45fe4eb67521dd1801e84eea6ad896950e43adc9d794fbc2499d2784",
+        "name": "sha256"
+      },
+      "columns": {},
+      "compiled": true,
+      "compiled_code": "\n\n\n\nselect * from \"pagila\".\"public\".\"customer\"\n",
+      "compiled_path": null,
+      "config": {
+        "alias": null,
+        "column_types": {},
+        "database": null,
+        "docs": {
+          "node_color": null,
+          "show": true
+        },
+        "enabled": true,
+        "full_refresh": null,
+        "grants": {},
+        "incremental_strategy": null,
+        "materialized": "snapshot",
+        "meta": {},
+        "on_schema_change": "ignore",
+        "packages": [],
+        "persist_docs": {},
+        "post-hook": [],
+        "pre-hook": [],
+        "quoting": {},
+        "schema": null,
+        "strategy": "timestamp",
+        "tags": [],
+        "target_database": "pagila",
+        "target_schema": "public",
+        "unique_key": "customer_id",
+        "updated_at": "last_update"
+      },
+      "created_at": 1663278957.5715818,
+      "database": "pagila",
+      "deferred": false,
+      "depends_on": {
+        "macros": [],
+        "nodes": [
+          "source.sample_dbt.pagila.customer"
+        ]
+      },
+      "description": "",
+      "docs": {
+        "node_color": null,
+        "show": true
+      },
+      "extra_ctes": [],
+      "extra_ctes_injected": true,
+      "fqn": [
+        "sample_dbt",
+        "customer_snapshot",
+        "customer_snapshot"
+      ],
+      "language": "sql",
+      "meta": {},
+      "metrics": [],
+      "name": "customer_snapshot",
+      "original_file_path": "snapshots/customer_snapshot.sql",
+      "package_name": "sample_dbt",
+      "patch_path": null,
+      "path": "customer_snapshot.sql",
+      "raw_code": "\n\n{{\n    config(\n      target_database='pagila',\n      target_schema='public',\n      unique_key='customer_id',\n\n      strategy='timestamp',\n      updated_at='last_update',\n    )\n}}\n\nselect * from {{ source('pagila', 'customer') }}\n\n",
+      "refs": [],
+      "relation_name": "\"pagila\".\"public\".\"customer_snapshot\"",
+      "resource_type": "snapshot",
+      "root_path": "/some-path/sample-dbt",
+      "schema": "public",
+      "sources": [
+        [
+          "pagila",
+          "customer"
+        ]
+      ],
+      "tags": [],
+      "unique_id": "snapshot.sample_dbt.customer_snapshot",
+      "unrendered_config": {
+        "strategy": "timestamp",
+        "target_database": "pagila",
+        "target_schema": "public",
+        "unique_key": "customer_id",
+        "updated_at": "last_update"
       }
     },
     "test.sample_dbt.assert_source_actor_last_update_is_recent": {
@@ -8575,6 +8667,9 @@
     ],
     "model.sample_dbt.payments_by_customer_by_month": [
       "model.sample_dbt.payments_base"
+    ],
+    "snapshot.sample_dbt.customer_snapshot": [
+      "source.sample_dbt.pagila.customer"
     ],
     "source.sample_dbt.pagila.actor": [],
     "source.sample_dbt.pagila.address": [],
