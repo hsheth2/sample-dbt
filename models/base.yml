@@ -74,6 +74,7 @@ models:
         meta:
           terms: pii, customer_id
           is_sensitive: true
+          maturity: beta
         tags:
           - tag_from_dbt
       - name: amount

@@ -25,7 +25,7 @@ Unless otherwise specified, run all commands from the repo root.
 
    ```shell
    # create database
-   echo 'CREATE DATABASE pagila' | docker exec -it postgres psql -U postgres
+   echo 'CREATE DATABASE pagila' | docker exec -i postgres psql -U postgres
    # schema objects
    cat ./db/pagila-schema.sql | docker exec -i postgres psql -U postgres -d pagila
    # data
