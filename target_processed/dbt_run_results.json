@@ -1,25 +1,49 @@
 {
   "args": {
-    "event_buffer_size": 100000,
+    "cache_selected_only": false,
+    "defer": false,
+    "enable_legacy_logger": false,
+    "exclude": [],
+    "favor_state": false,
     "indirect_selection": "eager",
-    "no_print": false,
+    "introspect": true,
+    "invocation_command": "dbt build --profiles-dir .",
+    "log_file_max_bytes": 10485760,
+    "log_format": "default",
+    "log_format_file": "debug",
+    "log_level": "info",
+    "log_level_file": "debug",
+    "log_path": "/Users/hsheth/projects/sample-dbt/logs",
+    "macro_debugging": false,
     "partial_parse": true,
+    "partial_parse_file_diff": true,
+    "populate_cache": true,
+    "print": true,
     "printer_width": 80,
-    "profiles_dir": "/Users/hsheth/projects/sample-dbt",
+    "profiles_dir": ".",
+    "project_dir": "/Users/hsheth/projects/sample-dbt",
     "quiet": false,
     "resource_types": [],
-    "rpc_method": "build",
+    "select": [],
     "send_anonymous_usage_stats": true,
+    "show": false,
     "static_parser": true,
+    "strict_mode": false,
     "use_colors": true,
+    "use_colors_file": true,
+    "vars": {},
     "version_check": true,
+    "warn_error_options": {
+      "exclude": [],
+      "include": []
+    },
     "which": "build",
     "write_json": true
   },
   "elapsed_time": 3.1415,
   "metadata": {
     "dbt_schema_version": "https://schemas.getdbt.com/dbt/run-results/v4.json",
-    "dbt_version": "1.3.0",
+    "dbt_version": "1.6.5",
     "env": {},
     "generated_at": "2021-06-18T21:38:36.384613Z",
     "invocation_id": "just-some-random-id"
@@ -35,7 +59,7 @@
       "failures": null,
       "message": "CREATE VIEW",
       "status": "success",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -60,7 +84,7 @@
       "failures": null,
       "message": "INSERT 0 0",
       "status": "success",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -76,12 +100,16 @@
       "unique_id": "snapshot.sample_dbt.customer_snapshot"
     },
     {
-      "adapter_response": {},
+      "adapter_response": {
+        "_message": "SELECT 1",
+        "code": "SELECT",
+        "rows_affected": 1
+      },
       "execution_time": 0.023441791534423828,
       "failures": 0,
       "message": null,
       "status": "pass",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -97,12 +125,16 @@
       "unique_id": "test.sample_dbt.assert_source_actor_last_update_is_recent"
     },
     {
-      "adapter_response": {},
+      "adapter_response": {
+        "_message": "SELECT 1",
+        "code": "SELECT",
+        "rows_affected": 1
+      },
       "execution_time": 0.023441791534423828,
       "failures": 0,
       "message": null,
       "status": "pass",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -118,12 +150,16 @@
       "unique_id": "test.sample_dbt.source_not_null_pagila_actor_actor_id.ad63829d3e"
     },
     {
-      "adapter_response": {},
+      "adapter_response": {
+        "_message": "SELECT 1",
+        "code": "SELECT",
+        "rows_affected": 1
+      },
       "execution_time": 0.023441791534423828,
       "failures": 0,
       "message": null,
       "status": "pass",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -148,7 +184,7 @@
       "failures": null,
       "message": "SELECT 2466",
       "status": "success",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -173,7 +209,7 @@
       "failures": null,
       "message": "SELECT 2466",
       "status": "success",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -189,12 +225,16 @@
       "unique_id": "model.sample_dbt.monthly_billing_with_cust"
     },
     {
-      "adapter_response": {},
+      "adapter_response": {
+        "_message": "SELECT 1",
+        "code": "SELECT",
+        "rows_affected": 1
+      },
       "execution_time": 0.023441791534423828,
       "failures": 0,
       "message": null,
       "status": "pass",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -210,12 +250,16 @@
       "unique_id": "test.sample_dbt.is_email_monthly_billing_with_cust_email.57a935ce99"
     },
     {
-      "adapter_response": {},
+      "adapter_response": {
+        "_message": "SELECT 1",
+        "code": "SELECT",
+        "rows_affected": 1
+      },
       "execution_time": 0.023441791534423828,
       "failures": 0,
       "message": null,
       "status": "pass",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -231,12 +275,16 @@
       "unique_id": "test.sample_dbt.not_null_monthly_billing_with_cust_billing_month.19ce54289b"
     },
     {
-      "adapter_response": {},
+      "adapter_response": {
+        "_message": "SELECT 1",
+        "code": "SELECT",
+        "rows_affected": 1
+      },
       "execution_time": 0.023441791534423828,
       "failures": 0,
       "message": null,
       "status": "pass",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",
@@ -252,12 +300,16 @@
       "unique_id": "test.sample_dbt.not_null_monthly_billing_with_cust_email.d405c2cc13"
     },
     {
-      "adapter_response": {},
+      "adapter_response": {
+        "_message": "SELECT 1",
+        "code": "SELECT",
+        "rows_affected": 1
+      },
       "execution_time": 0.023441791534423828,
       "failures": 0,
       "message": null,
       "status": "pass",
-      "thread_id": "Thread-1",
+      "thread_id": "Thread-1 (worker)",
       "timing": [
         {
           "completed_at": "2022-09-16T19:06:38.239639Z",

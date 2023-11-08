@@ -3,12 +3,12 @@
 ) }}
 
 SELECT
-    date_trunc('month', payment_date) as "billing_month",
+    date_trunc('month', payment_date) as "BillingMonth",
     customer_id,
     sum(amount) as "amount"
 FROM
     {{ ref('payments_base')}}
 GROUP BY
-    billing_month,
+    "BillingMonth",
     customer_id
 
