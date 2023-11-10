@@ -8,3 +8,4 @@ dbt_modules/
 logs/
 venv/
 .envrc
+*sample-output.json

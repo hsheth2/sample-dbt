@@ -1,0 +1,17 @@
+source:
+  type: postgres
+  config:
+    host_port: localhost
+    database: pagila
+    username: postgres
+    include_tables: true
+    include_views: true
+    profiling:
+      enabled: true
+      profile_table_level_only: true
+    password: secret
+
+sink:
+  type: file
+  config:
+    filename: postgres-sample-output.json
