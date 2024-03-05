@@ -14,9 +14,9 @@ def process_manifest(manifest):
 
         if "root_path" in item:
             item["root_path"] = "/some-path/sample-dbt"
-        
-        if 'created_at' in item:
-            item['created_at'] = 1663278957.5715818
+
+        if "created_at" in item:
+            item["created_at"] = 1663278957.5715818
 
         return item
 
@@ -38,10 +38,10 @@ def process_sources(sources):
         result["max_loaded_at_time_ago_in_s"] = 42276862.910052
         result["snapshotted_at"] = "2021-06-18T17:08:55.925443+00:00"
 
-        result['execution_time'] = 0.023441791534423828
-        for timing in result['timing']:
-            timing['completed_at'] = "2022-09-16T19:06:38.239639Z"
-            timing['started_at'] = "2022-09-16T19:06:38.239635Z"
+        result["execution_time"] = 0.023441791534423828
+        for timing in result["timing"]:
+            timing["completed_at"] = "2022-09-16T19:06:38.239639Z"
+            timing["started_at"] = "2022-09-16T19:06:38.239635Z"
         return result
 
     sources["elapsed_time"] = 3.1415
@@ -53,6 +53,7 @@ def process_sources(sources):
 
     return sources
 
+
 def process_run_results(run_results):
     run_results["elapsed_time"] = 3.1415
 
@@ -60,14 +61,15 @@ def process_run_results(run_results):
     run_results["metadata"]["invocation_id"] = "just-some-random-id"
 
     def process_run(result):
-        result['execution_time'] = 0.023441791534423828
-        for timing in result['timing']:
-            timing['completed_at'] = "2022-09-16T19:06:38.239639Z"
-            timing['started_at'] = "2022-09-16T19:06:38.239635Z"
+        result["execution_time"] = 0.023441791534423828
+        for timing in result["timing"]:
+            timing["completed_at"] = "2022-09-16T19:06:38.241639Z"
+            timing["started_at"] = "2022-09-16T19:06:38.239635Z"
         return result
 
     run_results["results"] = [process_run(result) for result in run_results["results"]]
     return run_results
+
 
 def main():
     with open("./target/catalog.json", "r") as file:
@@ -95,9 +97,10 @@ def main():
 
     with open("./target_processed/dbt_sources.json", "w") as file:
         json.dump(processed_sources, file, indent=2, sort_keys=True)
-    
+
     with open("./target_processed/dbt_run_results.json", "w") as file:
         json.dump(processed_run_results, file, indent=2, sort_keys=True)
+
 
 if __name__ == "__main__":
     main()
