@@ -12,10 +12,16 @@ source:
     # Options
     target_platform: "postgres" # e.g. bigquery/postgres/etc.
 
-    use_compiled_code: true
     write_semantics: OVERRIDE
     infer_dbt_schemas: true
     include_column_lineage: true
+
+    include_compiled_code: true
+
+    entities_enabled:
+      model_performance: 'yes'
+      #sources: 'no'
+    #skip_sources_in_lineage: true
 
 # datahub_api:
 #   server: http://localhost:8080
