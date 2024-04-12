@@ -1,2 +1,5 @@
 dbt-core==1.7.3
 dbt-postgres==1.7.3
+
+# See https://github.com/dbt-labs/dbt-core/issues/9759
+protobuf==4.25.3
