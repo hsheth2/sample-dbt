@@ -5,8 +5,8 @@ sources:
     description: "base models"
     # database:
     freshness: # default freshness
-      warn_after: { count: 123456789, period: day }
-      error_after: { count: 999999999, period: day }
+      warn_after: {count: 123456789, period: day}
+      error_after: {count: 999999999, period: day}
     loaded_at_field: last_update
     schema: public
     tables:
